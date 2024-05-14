@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/0.9.6/ids.xsd">
+    <info>
+        <title>IDS Renhold</title>
+        <copyright>[mok-see] AS</copyright>
+        <version>0.5</version>
+        <description>Arkitektmodell kan bli brukt til å kalkulere renholdskostnader hvis den inneholder       informasjonen som er definert i denne Informasjons-leveranse-spesifikasjonen (IDS-Informaton Delivery Specification)         Denne IDS filen kan brukes for å automatisk validere at en IFC-modell.             Prosjektet er en del av pilotprosjekt i regi av DiBK</description>
+        <author>sigve@mok-see.com</author>
+        <purpose>Basis for kalkulere renholdskostnader</purpose>
+        <milestone>MMI 500 : Som bygget</milestone>
+    </info>
+    <specifications>
+        <specification name="Navngivning på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må ha et beskrivende navn og romnummer som kan gjennkjennes på merking i bygget" instructions="Alle rom må kunne identifiseres med romnavn og romnummer" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <attribute instructions="Alle rom må ha et romnavn">
+                    <name>
+                        <simpleValue>LongName</simpleValue>
+                    </name>
+                </attribute>
+                <attribute instructions="Alle rom må ha et romnummer">
+                    <name>
+                        <simpleValue>Name</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="Dekkende materialer på rom" ifcVersion="IFC2X3 IFC4" description="Alle rom må ha referanse til dekkene som kler rommet" instructions="Alle rom må referanse til dekkene som kler rommet, som gir referanse til IfcCovering" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <attribute instructions="Alle rom må gi liste av relaterte dekkende flater">
+                    <name>
+                        <simpleValue>HasCoverings</simpleValue>
+                    </name>
+                </attribute>
+            </requirements>
+        </specification>
+        <specification name="Størrelser på rom" ifcVersion="IFC4" description="Romstørrelser må oppgis for å kunne kalkulere renholdskostnader" instructions="Alle rom må oppgi nødvendige størrelser for å kunne kalkulere riktige renholdskostnader per rom" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property datatype="IfcAreaMeasure" minOccurs="1" instructions="Netto gulvareal må være oppgitt per rom" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>NetFloorArea</simpleValue>
+                    </name>
+                </property>
+                <property datatype="IfcLengthMeasure" minOccurs="1" instructions="Himlingshøyde, netto høyde på rommet, må være oppgitt for hver rom" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Qto_SpaceBaseQuantities</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>FinishCeilingHeight</simpleValue>
+                    </name>
+                </property>
+                <property datatype="IfcBoolean" minOccurs="1" instructions="Det må være oppgitt om det er åpen eller lukket himling på rommet" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>ConcealedCeiling</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+        <specification name="Overflater i rommet" ifcVersion="IFC4" description="Overflater må oppgis for å kunne kalkulere renholdskostnader" instructions="Alle rom må oppgi nødvendige overflatematerialer for å kunne kalkulere riktige renholdskostnader per rom" minOccurs="0" maxOccurs="unbounded">
+            <applicability>
+                <entity>
+                    <name>
+                        <simpleValue>IfcSpace</simpleValue>
+                    </name>
+                </entity>
+            </applicability>
+            <requirements>
+                <property datatype="IfcLabel" minOccurs="1" instructions="Overflater på vegger må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>WallCovering</simpleValue>
+                    </name>
+                </property>
+                <property datatype="IfcLabel" minOccurs="1" instructions="Overflater på gulv må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>FloorCovering</simpleValue>
+                    </name>
+                </property>
+                <property datatype="IfcLabel" minOccurs="1" instructions="Overflater på vegger må være angitt" maxOccurs="1">
+                    <propertySet>
+                        <simpleValue>Pset_SpaceCoveringRequirements</simpleValue>
+                    </propertySet>
+                    <name>
+                        <simpleValue>CeilingCovering</simpleValue>
+                    </name>
+                </property>
+            </requirements>
+        </specification>
+    </specifications>
+</ids>
